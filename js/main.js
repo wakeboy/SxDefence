@@ -177,9 +177,9 @@ const init = function () {
 
   mainBg.play();
 
-  enemySpeed = 0.02;
+  enemySpeed = 0.04;
 
-  userSpeed = 0.015;
+  userSpeed = 0.03;
 
   enemyType = 1;
 
@@ -464,7 +464,7 @@ const showTime = () => {
 };
 
 const showMoney = () => {
-  const stringMoney = `$${money}`;
+  const stringMoney = `${money}`;
   drawText(stringMoney, w - stringMoney.length * tileSize, 0);
 };
 

@@ -20,7 +20,7 @@ class LegitUser {
 
     this.offSet = 0.5;
 
-    this.value = 10;
+    this.value = 100;
 
     this.win = false;
   }
@@ -30,7 +30,7 @@ class LegitUser {
 
     if (this.current >= this.path.length) {
       this.win = true;
-
+      money += this.value;
       return;
     }
 
