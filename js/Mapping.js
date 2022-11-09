@@ -121,3 +121,21 @@ const FXtypes = {
     3: [0, 21],
     4: [0, 22]
 }
+
+const damageWeight = {
+    Airplane: {
+        Bullet: 1000,
+        Missle: 2,
+        RecaptchaBullet: 10000
+    },
+    Tank: {
+        Bullet: 100,
+        Missle: 2,
+        RecaptchaBullet: 100
+    },
+    Enemy: {
+        Bullet: 100,
+        Missle: 2,
+        RecaptchaBullet: 100
+    }
+}

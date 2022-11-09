@@ -97,10 +97,21 @@ class Enemy {
     }
 
     getHit(bullet){
-        this.health = Math.max(this.health-bullet.strength, 0)
+        this.health = Math.max(this.health-(bullet.strength*this.weaknessMultiplier(bullet)), 0)
         turrets[bullet.turrentId].hits++
         if(this.health <= 0)
             turrets[bullet.turrentId].kills++
     }
 
+    weaknessMultiplier(bullet)
+    {
+        const bulletType = bullet.constructor.name;
+        const enemyType = this.constructor.name;
+        let weight = 1;
+
+        if(damageWeight[enemyType] && damageWeight[enemyType][bulletType])
+            weight = damageWeight[enemyType][bulletType];
+
+        return weight;
+    }
 }
