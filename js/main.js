@@ -50,8 +50,8 @@ let canvas,
   legitUsers;
 
 const load = () => {
-  mainBg = new MusicManager("music/Analog-Nostalgia.mp3");
-  otherBg = new MusicManager("music/Runaway-Food-Truck.mp3");
+  mainBg = new MusicManager("music/Trancyvania.mp3");
+  otherBg = new MusicManager("music/Urban-Future.mp3");
   soundManager = new SoundManager({
     shoot1: "soundfx/156895__halgrimm__a-shot.wav",
     shoot2: "soundfx/368734__leszek-szary__shoot-1.wav",

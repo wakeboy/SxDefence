@@ -113,7 +113,7 @@ class LegitUser {
   }
 
   showHealthBar() {
-    c.fillStyle = "red";
+    c.fillStyle = "green";
     c.fillRect(-15, -tileSize2, (this.health / this.maxHealth) * 0.3 * 100, 5);
     c.strokeStyle = "black";
     c.strokeRect(-15, -tileSize2, 30, 5);
