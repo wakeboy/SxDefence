@@ -47,7 +47,8 @@ let canvas,
   lastFrameTime,
   tManager,
   soundManager,
-  legitUsers;
+  legitUsers,
+  interval;
 
 const load = () => {
   mainBg = new MusicManager("music/Trancyvania.mp3");
@@ -253,16 +254,18 @@ const init = function () {
 
   startTime = performance.now();
 
+  interval = 20;
+
   tManager.addCallback(
     () => {
       startTime = performance.now();
     },
     startTime,
-    60000,
+    interval * 1000,
     0
   );
 
-  tManager.addCallback(deployEnemies, startTime, 60000, 3);
+  tManager.addCallback(deployEnemies, startTime, interval * 1000, 30);
 
   u = requestAnimationFrame(update);
 };
@@ -463,7 +466,9 @@ const drawText = (text, x, y) => {
 };
 
 const showTime = () => {
-  const stringTime = `${60 - parseInt((performance.now() - startTime) / 1000)}`;
+  const stringTime = `${
+    interval - parseInt((performance.now() - startTime) / 1000)
+  }`;
   drawText(stringTime, 0, h - tileSize);
 };
 
