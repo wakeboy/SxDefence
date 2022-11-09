@@ -1,38 +1,46 @@
 class Enemy {
-  constructor(pos, path, r, type, speed) {
-    this.pos = pos || { x: 0, y: 0 };
 
-    this.maxHealth = 50 + type * 10;
+	constructor(pos, path, r, type, speed){
+	
+		this.pos = pos || {x: 0, y: 0}
+		
+		this.maxHealth = 50 + type * 10
+		
+		this.health = this.maxHealth
+		
+		this.r = r || 10
+		
+		this.type = type || 1
+		
+		this.angle = 0
+		
+		this.path = path
+		
+		this.current = 0
+		
+		this.speed = speed || 0.02
+		
+		this.offSet = 0.5
+		
+		this.value = 10
+		
+		this.win = false
+	
+	}
+	
+	update(){
+	
+	    if( this.health <= 0 || this.win )
+	    
+	        return
 
-    this.health = this.maxHealth;
+		if( this.current >= this.path.length ){
 
-    this.r = r || 10;
+            this.win = true
 
-    this.type = type || 1;
-
-    this.angle = 0;
-
-    this.path = path;
-
-    this.current = 0;
-
-    this.speed = speed || 0.02;
-
-    this.offSet = 0.5;
-
-    this.value = 10;
-
-    this.win = false;
-  }
-
-  update() {
-    if (this.health <= 0 || this.win) return;
-
-    if (this.current >= this.path.length) {
-      this.win = true;
-      money -= this.value;
-      return;
-    }
+			return
+			
+        }
 
     const xDir = this.path[this.current][1] - this.pos.x;
     const yDir = this.path[this.current][0] - this.pos.y;
@@ -119,9 +127,22 @@ class Enemy {
     c.strokeRect(-15, -tileSize2, 30, 5);
   }
 
-  getHit(bullet) {
-    this.health = Math.max(this.health - bullet.strength, 0);
-    turrets[bullet.turrentId].hits++;
-    if (this.health <= 0) turrets[bullet.turrentId].kills++;
-  }
+    getHit(bullet){
+        this.health = Math.max(this.health-(bullet.strength*this.weaknessMultiplier(bullet)), 0)
+        turrets[bullet.turrentId].hits++
+        if(this.health <= 0)
+            turrets[bullet.turrentId].kills++
+    }
+
+    weaknessMultiplier(bullet)
+    {
+        const bulletType = bullet.constructor.name;
+        const enemyType = this.constructor.name;
+        let weight = 1;
+
+        if(damageWeight[enemyType] && damageWeight[enemyType][bulletType])
+            weight = damageWeight[enemyType][bulletType];
+
+        return weight;
+    }
 }
