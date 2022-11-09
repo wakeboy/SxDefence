@@ -207,7 +207,7 @@ const init = function () {
 
   canvas.width = w * scale;
 
-  canvas.height = h * scale;
+  canvas.height = (h + tileSize) * scale;
 
   canvas.style.width = w + "px";
 
@@ -268,7 +268,7 @@ const init = function () {
 };
 
 const draw = function () {
-  c.clearRect(0, 0, w, h);
+  c.clearRect(0, 0, w, h + tileSize);
 
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[0].length; j++) {
@@ -341,6 +341,10 @@ const draw = function () {
   }
 
   showMoney();
+
+  displayTurrets();
+
+  displayEnemies();
 };
 
 const update = function (time) {
@@ -468,6 +472,27 @@ const showMoney = () => {
   drawText(stringMoney, w - stringMoney.length * tileSize, 0);
 };
 
+const displayTurrets = () => {
+  new Turret(id, { x: 16, y: 10 }, null).show();
+  new EFTurret(id, { x: 17, y: 10 }, null).show();
+  new ReCaptchaLauncher(id, { x: 18, y: 10 }, null).show();
+  new DoubleMissileLauncher(id, { x: 19, y: 10 }, null).show();
+  new Throttler(id, { x: 20, y: 10 }, null).show();
+};
+
+const displayEnemies = () => {
+  c.fillStyle = "gray";
+  c.fillRect(0, 640, 64 * 8, 64);
+  new Enemy({ x: 0, y: 10 }, path, 15, 1, 0).show();
+  new Enemy({ x: 1, y: 10 }, path, 15, 2, 0).show();
+  new Enemy({ x: 2, y: 10 }, path, 15, 3, 0).show();
+  new Enemy({ x: 3, y: 10 }, path, 15, 4, 0).show();
+  new Enemy({ x: 4, y: 10 }, path, 15, 5, 0).show();
+  new SQLInjector({ x: 5, y: 10 }, path, 15, 6, 0).show();
+  new Enemy({ x: 6, y: 10 }, path, 15, 7, 0).show();
+  new Enemy({ x: 7, y: 10 }, path, 15, 8, 0).show();
+};
+
 let ie = 0;
 
 const deployEnemies = () => {
@@ -530,7 +555,9 @@ const deployEnemies = () => {
   if (ie == 2) {
     tManager.addCallback(
       () => {
-        enemies.push(new SQLInjector({ x: ini[1], y: ini[0] }, path, 15, 6, 0.02));
+        enemies.push(
+          new SQLInjector({ x: ini[1], y: ini[0] }, path, 15, 6, 0.02)
+        );
       },
       performance.now(),
       1000,
@@ -635,12 +662,12 @@ const changeTurret = (e) => {
     case 51:
       turretType = ReCaptchaLauncher;
       break;
-      case 52:
+    case 52:
       turretType = DoubleMissileLauncher;
       break;
-      case 53:
-        turretType = Throttler;
-        break;
+    case 53:
+      turretType = Throttler;
+      break;
     case 68:
       if (selected) remove(selected);
       break;
