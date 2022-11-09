@@ -398,7 +398,7 @@ const update = function (time) {
           rand: false,
         })
       );
-      enemies.splice(i, 1);
+      legitUsers.splice(i, 1);
     }
   }
 
@@ -515,6 +515,16 @@ const deployEnemies = () => {
       1000,
       3
     );
+    tManager.addCallback(
+      () => {
+        legitUsers.push(
+          new LegitUser({ x: ini[1], y: ini[0] }, path, 15, 2, userSpeed)
+        );
+      },
+      performance.now(),
+      1000,
+      2
+    );
   }
 
   if (ie == 2) {
@@ -525,6 +535,16 @@ const deployEnemies = () => {
       performance.now(),
       1000,
       1
+    );
+    tManager.addCallback(
+      () => {
+        legitUsers.push(
+          new LegitUser({ x: ini[1], y: ini[0] }, path, 15, 2, userSpeed)
+        );
+      },
+      performance.now(),
+      1000,
+      2
     );
   }
 
