@@ -30,7 +30,7 @@ class Enemy {
 
     if (this.current >= this.path.length) {
       this.win = true;
-      money -= this.value;
+      money -= this.value * 10;
       return;
     }
 

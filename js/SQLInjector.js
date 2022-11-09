@@ -1,4 +1,4 @@
-class Tank extends Enemy {
+class SQLInjector extends Enemy {
 
     constructor(pos, path, r, type, speed){
         super(pos, path, r, type, speed)
