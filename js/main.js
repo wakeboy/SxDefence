@@ -633,11 +633,14 @@ const changeTurret = (e) => {
       turretType = DoubleTurret;
       break;
     case 51:
-      turretType = DoubleMissileLauncher;
-      break;
-    case 52:
       turretType = MissileLauncher;
       break;
+      case 52:
+      turretType = DoubleMissileLauncher;
+      break;
+      case 53:
+        turretType = Throttler;
+        break;
     case 68:
       if (selected) remove(selected);
       break;

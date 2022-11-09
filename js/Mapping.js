@@ -19,6 +19,11 @@ const turretTypes = {
         cannon: {x:22, y:8},
         fire: {x:22, y:12}
     },
+    5: {
+        base: {x:20, y:7},
+        cannon: {x:19, y:8},
+        fire: {x:22, y:11}
+    },
     8: {
         base: null,
         cannon: {x:15, y:12},

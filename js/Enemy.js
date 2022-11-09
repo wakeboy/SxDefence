@@ -128,6 +128,11 @@ class Enemy {
     if (this.health <= 0) turrets[bullet.turrentId].kills++;
   }
 
+  getSlowed(bullet) {
+    this.speed = Math.max(this.speed * (1 - bullet.strength), 0.005);
+    turrets[bullet.turrentId].hits++;
+  }
+
   weaknessMultiplier(bullet) {
     const bulletType = bullet.constructor.name;
     const enemyType = this.constructor.name;

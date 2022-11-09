@@ -27,7 +27,7 @@ class Turret {
 		this.lastShot = 10
 		this.currentLastShot = 0
 		this.type = 1
-		this.fireType = 1
+		this.fireType = 3
 		this.price = 50
 		this.bulletType = Bullet
 		this.enemies = enemies
