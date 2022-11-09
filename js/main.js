@@ -630,7 +630,7 @@ const changeTurret = (e) => {
       turretType = Turret;
       break;
     case 50:
-      turretType = DoubleTurret;
+      turretType = EFTurret;
       break;
     case 51:
       turretType = MissileLauncher;

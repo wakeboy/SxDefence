@@ -131,16 +131,19 @@ const damageWeight = {
     Airplane: {
         Bullet: 1,
         Missle: 2,
-        RecaptchaBullet: 100
+        RecaptchaBullet: 1,
+        EFBullet: 1
     },
     Tank: {
-        Bullet: 100,
+        Bullet: 1,
         Missle: 2,
-        RecaptchaBullet: 100
+        RecaptchaBullet: 1,
+        EFBullet: 100
     },
     Enemy: {
         Bullet: 1,
         Missle: 2,
-        RecaptchaBullet: 10
+        RecaptchaBullet: 1,
+        EFBullet: 1
     }
 }

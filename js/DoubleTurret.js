@@ -1,4 +1,4 @@
-class DoubleTurret extends Turret {
+class EFTurret extends Turret {
 
     static price = 100
     static staticType = 2
@@ -8,6 +8,7 @@ class DoubleTurret extends Turret {
         this.type = 2
         this.fireType = 2
         this.price = 100
+        this.bulletType = EFBullet
     }
 
 }
