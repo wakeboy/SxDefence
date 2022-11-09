@@ -530,7 +530,7 @@ const deployEnemies = () => {
   if (ie == 2) {
     tManager.addCallback(
       () => {
-        enemies.push(new Tank({ x: ini[1], y: ini[0] }, path, 15, 6, 0.02));
+        enemies.push(new SQLInjector({ x: ini[1], y: ini[0] }, path, 15, 6, 0.02));
       },
       performance.now(),
       1000,

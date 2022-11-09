@@ -134,7 +134,7 @@ const damageWeight = {
         ReCaptchaBullet: 1,
         EFBullet: 1
     },
-    Tank: {
+    SQLInjector: {
         Bullet: 1,
         Missle: 2,
         ReCaptchaBullet: 1,
