@@ -1,4 +1,4 @@
-class Enemy {
+class LegitUser {
   constructor(pos, path, r, type, speed) {
     this.pos = pos || { x: 0, y: 0 };
 
@@ -20,7 +20,7 @@ class Enemy {
 
     this.offSet = 0.5;
 
-    this.value = 10;
+    this.value = 100;
 
     this.win = false;
   }
@@ -30,7 +30,7 @@ class Enemy {
 
     if (this.current >= this.path.length) {
       this.win = true;
-      money -= this.value;
+      money += this.value;
       return;
     }
 
@@ -119,9 +119,5 @@ class Enemy {
     c.strokeRect(-15, -tileSize2, 30, 5);
   }
 
-  getHit(bullet) {
-    this.health = Math.max(this.health - bullet.strength, 0);
-    turrets[bullet.turrentId].hits++;
-    if (this.health <= 0) turrets[bullet.turrentId].kills++;
-  }
+  getHit(bullet) {}
 }
