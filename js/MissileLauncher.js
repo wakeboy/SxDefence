@@ -1,3 +1,4 @@
+//don't use directly
 class MissileLauncher extends Turret {
 
     static minRange = 4

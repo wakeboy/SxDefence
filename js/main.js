@@ -633,7 +633,7 @@ const changeTurret = (e) => {
       turretType = EFTurret;
       break;
     case 51:
-      turretType = MissileLauncher;
+      turretType = ReCaptchaLauncher;
       break;
       case 52:
       turretType = DoubleMissileLauncher;
