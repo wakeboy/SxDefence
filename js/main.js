@@ -474,7 +474,12 @@ const showTime = () => {
 
 const showMoney = () => {
   const stringMoney = `${money}`;
-  drawText(stringMoney, w - stringMoney.length * tileSize, 0);
+  if (money <= 0) {
+    tManager.removeCallback(deployEnemies);
+    console.log("Game Over!");
+  } else {
+    drawText(stringMoney, w - stringMoney.length * tileSize, 0);
+  }
 };
 
 const displayTurrets = () => {
