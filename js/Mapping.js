@@ -129,38 +129,43 @@ const FXtypes = {
 
 const damageWeight = {
   Airplane: {
-    Bullet: 1,
-    Missle: 2,
-    TwoFactorBullet: 2,
-    ReCaptchaBullet: 5,
-    EFBullet: 1,
+    Bullet: 0.5,
+    Missle: 1,
+    TwoFactorBullet: -0.5,
+    ReCaptchaBullet: 2,
+    EFBullet: 0.5,
+    ThrottleBeam: 2
   },
   SQLInjector: {
-    Bullet: 1,
-    Missle: 2,
-    TwoFactorBullet: 2,
-    ReCaptchaBullet: 1,
-    EFBullet: 5,
+    Bullet: 0.5,
+    Missle: 1,
+    TwoFactorBullet: 0.5,
+    ReCaptchaBullet: 0.5,
+    EFBullet: 2,
+    ThrottleBeam: 1
   },
   BruteForce: {
     Bullet: 1,
-    Missle: 2,
-    TwoFactorBullet: 3,
-    ReCaptchaBullet: 3,
-    EFBullet: 1,
+    Missle: 1,
+    TwoFactorBullet: 2,
+    ReCaptchaBullet: 2,
+    EFBullet: 0.5,
+    ThrottleBeam: 1.5
   },
   Enemy: {
     Bullet: 1,
-    Missle: 2,
-    TwoFactorBullet: 2,
-    ReCaptchaBullet: 5,
+    Missle: 1,
+    TwoFactorBullet: 1,
+    ReCaptchaBullet: 1,
     EFBullet: 1,
+    ThrottleBeam: 1
   },
   Pexa: {
     Bullet: 1,
-    Missle: 2,
-    TwoFactorBullet: 2,
-    ReCaptchaBullet: 5,
+    Missle: 1,
+    TwoFactorBullet: 1,
+    ReCaptchaBullet: 1,
     EFBullet: 1,
+    ThrottleBeam: 1
   },
 };

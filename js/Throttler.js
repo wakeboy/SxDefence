@@ -1,7 +1,7 @@
 class Throttler extends Turret {
 	static minRange = 0
     static range = 2
-    static price = 200
+    static price = 500
     static staticType = 5
     
     constructor(id, pos, enemies){
