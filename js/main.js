@@ -580,7 +580,20 @@ const deployEnemies = () => {
     );
   }
 
-  ie = (ie + 1) % 3;
+  if (ie == 3) {
+    tManager.addCallback(
+      () => {
+        enemies.push(
+          new BruteForce({ x: ini[1], y: ini[0] }, path, 15, 5, 0.02)
+        );
+      },
+      performance.now(),
+      1000,
+      10
+    );
+  }
+
+  ie = (ie + 1) % 4;
 };
 
 const getPosition = (e) => {
