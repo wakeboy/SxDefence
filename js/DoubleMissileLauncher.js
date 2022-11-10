@@ -8,6 +8,7 @@ class DoubleMissileLauncher extends MissileLauncher {
         this.type = 3
         this.fireType = 5
         this.price = 250
+        this.bulletType = TwoFactorBullet
     }
 
 }
