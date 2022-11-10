@@ -474,7 +474,12 @@ const showTime = () => {
 
 const showMoney = () => {
   const stringMoney = `${money}`;
-  drawText(stringMoney, w - stringMoney.length * tileSize, 0);
+  if (money <= 0) {
+    tManager.removeCallback(deployEnemies);
+    console.log("Game Over!");
+  } else {
+    drawText(stringMoney, w - stringMoney.length * tileSize, 0);
+  }
 };
 
 const displayTurrets = () => {
@@ -578,7 +583,7 @@ const deployEnemies = () => {
     const y2 = y1;
     tManager.addCallback(
       () => {
-        enemies.push(new Airplane({ x: x1, y: y1 }, [[y2, x2]], 15, 8, 0.04));
+        enemies.push(new Pexa({ x: x1, y: y1 }, [[y2, x2]], 15, 8, 0.04));
       },
       performance.now(),
       1000,
@@ -619,7 +624,20 @@ const deployEnemies = () => {
     );
   }
 
-  ie = (ie + 1) % 3;
+  if (ie == 3) {
+    tManager.addCallback(
+      () => {
+        enemies.push(
+          new BruteForce({ x: ini[1], y: ini[0] }, path, 15, 5, 0.02)
+        );
+      },
+      performance.now(),
+      1000,
+      10
+    );
+  }
+
+  ie = (ie + 1) % 4;
 };
 
 const getPosition = (e) => {
