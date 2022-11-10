@@ -96,6 +96,7 @@ const showMenu = () => {
   btn.style.left = "50%";
   btn.style.marginLeft = "-150px";
   btn.style.marginTop = "-25px";
+  btn.classList.add("fusion-button");
   btn.onclick = () => {
     btn.remove();
     init();

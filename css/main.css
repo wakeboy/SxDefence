@@ -12,3 +12,11 @@ canvas{
     display: block;
 }
 
+.fusion-button {
+  background: #43A047;
+  border: 1px solid #43a047;
+  text-transform: capitalize;
+  font-weight: 600;
+  border-radius: 5px;
+  color: white;
+}
