@@ -511,10 +511,10 @@ const displayEnemies = () => {
 
   displaySingleEnemies(0, 1);
   displaySingleEnemies(1, 2);
-  //   displaySingleEnemies(2, 3);
-  //   displaySingleEnemies(3, 4);
-  displaySingleEnemies(2, 5);
-  //displaySingleEnemies(5, 6);
+  const bruteForce = new BruteForce({ x: 2, y: 10 }, path, 15, 5, 0);
+  bruteForce.setIsDemo();
+  bruteForce.show();
+
   const enemy = new SQLInjector({ x: 3, y: 10 }, path, 15, 6, 0);
   enemy.setIsDemo();
   enemy.show();
@@ -529,7 +529,7 @@ const displayEnemies = () => {
 
   c.fillText("Brute-force", 118, 746);
 
-  c.fillText("EF Injector", 172, 716);
+  c.fillText("EF Injector", 177, 716);
 
   c.fillText("PEXA", 266, 746);
 
