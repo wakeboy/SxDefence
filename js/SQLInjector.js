@@ -2,7 +2,7 @@ class SQLInjector extends Enemy {
 
     constructor(pos, path, r, type, speed){
         super(pos, path, r, type, speed)
-        this.turret = new TankTurret(0, this.pos, null, this.type+3)
+        this.turret = new TankTurret(0, this.pos, null, 9)
     }
     
     update(){
