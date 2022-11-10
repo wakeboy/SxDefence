@@ -88,7 +88,7 @@ const load = () => {
 
 const showMenu = () => {
   const btn = document.createElement("button");
-  btn.innerText = "Play";
+  btn.innerText = "Initialise SecurExchange Defense!";
   btn.style.width = "300px";
   btn.style.height = "50px";
   btn.style.position = "fixed";
@@ -96,6 +96,7 @@ const showMenu = () => {
   btn.style.left = "50%";
   btn.style.marginLeft = "-150px";
   btn.style.marginTop = "-25px";
+  btn.classList.add("fusion-button");
   btn.onclick = () => {
     btn.remove();
     init();
@@ -231,6 +232,10 @@ const init = function () {
   fc = fcanvas.getContext("2d");
 
   fc.scale(scale, scale);
+
+  document.body.innerHTML = "";
+
+  document.body.appendChild(canvas);
 
   enemies = [];
 
@@ -476,10 +481,24 @@ const showMoney = () => {
   const stringMoney = `${money}`;
   if (money <= 0) {
     tManager.removeCallback(deployEnemies);
-    console.log("Game Over!");
+    gameOver();
   } else {
     drawText(stringMoney, w - stringMoney.length * tileSize, 0);
   }
+};
+
+function onDrawFrame(ctx, frame) {
+  // update canvas size
+  canvas.width = frame.width;
+  canvas.height = frame.height;
+  // update canvas that we are using for Konva.Image
+  ctx.drawImage(frame.buffer, 0, 0);
+  // redraw the layer
+  layer.draw();
+}
+
+const gameOver = () => {
+  window.location.href = "/GameOver.html";
 };
 
 const displayTurrets = () => {
@@ -624,20 +643,7 @@ const deployEnemies = () => {
     );
   }
 
-  if (ie == 3) {
-    tManager.addCallback(
-      () => {
-        enemies.push(
-          new BruteForce({ x: ini[1], y: ini[0] }, path, 15, 5, 0.02)
-        );
-      },
-      performance.now(),
-      1000,
-      10
-    );
-  }
-
-  ie = (ie + 1) % 4;
+  ie = (ie + 1) % 3;
 };
 
 const getPosition = (e) => {
