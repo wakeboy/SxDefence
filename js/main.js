@@ -195,7 +195,7 @@ const init = function () {
 
   timEnemies = 1000;
 
-  money = 2000;
+  money = 1000;
 
   turretType = null;
 
