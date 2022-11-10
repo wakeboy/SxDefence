@@ -2,7 +2,7 @@ class Turret {
 
     static minRange = 0
     static range = 2
-    static price = 50
+    static price = 250
     static staticType = 1
     
 	constructor(id, pos, enemies){

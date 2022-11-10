@@ -3,7 +3,7 @@ class MissileLauncher extends Turret {
 
     static minRange = 4
     static range = 6
-    static price = 200
+    static price = 350
     static staticType = 4
     
     constructor(id, pos, enemies){

@@ -1,6 +1,6 @@
 class DoubleMissileLauncher extends MissileLauncher {
 
-    static price = 250
+    static price = 350
     static staticType = 3
 
     constructor(id, pos, enemies){

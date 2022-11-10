@@ -2,7 +2,7 @@ class ReCaptchaLauncher extends Turret {
 
     static minRange = 4
     static range = 6
-    static price = 200
+    static price = 400
     static staticType = 4
     
     constructor(id, pos, enemies){
@@ -10,7 +10,7 @@ class ReCaptchaLauncher extends Turret {
         this.type = 4
         this.fireType = 6
         this.coolDown = 50
-        this.price = 200
+        this.price = 400
         this.minRange = 4
         this.range = 6
         this.bulletType = ReCaptchaBullet
