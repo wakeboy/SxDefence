@@ -533,7 +533,7 @@ const displayEnemies = () => {
 
   c.fillText("PEXA", 266, 746);
 
-  c.fillText("Email Injector", 320, 716);
+  c.fillText("SMS Attack", 320, 716);
 };
 
 const displaySingleEnemies = (pos, type) => {
