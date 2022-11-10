@@ -208,7 +208,7 @@ const init = function () {
 
   canvas.width = w * scale;
 
-  canvas.height = (h + tileSize) * scale;
+  canvas.height = (h + 2 * tileSize) * scale;
 
   canvas.style.width = w + "px";
 
@@ -271,7 +271,7 @@ const init = function () {
 };
 
 const draw = function () {
-  c.clearRect(0, 0, w, h + tileSize);
+  c.clearRect(0, 0, w, h + 2 * tileSize);
 
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[0].length; j++) {
@@ -478,24 +478,63 @@ const showMoney = () => {
 };
 
 const displayTurrets = () => {
+  c.fillStyle = "gray";
+  c.fillRect(1024, 640, 64 * 5, 128);
   new Turret(id, { x: 16, y: 10 }, null).show();
   new EFTurret(id, { x: 17, y: 10 }, null).show();
   new ReCaptchaLauncher(id, { x: 18, y: 10 }, null).show();
   new DoubleMissileLauncher(id, { x: 19, y: 10 }, null).show();
   new Throttler(id, { x: 20, y: 10 }, null).show();
+
+  c.font = "18px Georgia";
+
+  c.fillStyle = "LawnGreen";
+  c.fillText("Password", 1024, 716);
+
+  c.fillText("EF", 1108, 746);
+
+  c.fillText("ReCaptcha", 1142, 716);
+
+  c.fillText("MFA", 1226, 746);
+
+  c.fillText("Throttler", 1270, 716);
 };
 
 const displayEnemies = () => {
   c.fillStyle = "gray";
-  c.fillRect(0, 640, 64 * 8, 64);
-  new Enemy({ x: 0, y: 10 }, path, 15, 1, 0).show();
-  new Enemy({ x: 1, y: 10 }, path, 15, 2, 0).show();
-  new Enemy({ x: 2, y: 10 }, path, 15, 3, 0).show();
-  new Enemy({ x: 3, y: 10 }, path, 15, 4, 0).show();
-  new Enemy({ x: 4, y: 10 }, path, 15, 5, 0).show();
-  new SQLInjector({ x: 5, y: 10 }, path, 15, 6, 0).show();
-  new Enemy({ x: 6, y: 10 }, path, 15, 7, 0).show();
-  new Enemy({ x: 7, y: 10 }, path, 15, 8, 0).show();
+  c.fillRect(0, 640, 64 * 6, 128);
+
+  displaySingleEnemies(0, 1);
+  displaySingleEnemies(1, 2);
+  //   displaySingleEnemies(2, 3);
+  //   displaySingleEnemies(3, 4);
+  displaySingleEnemies(2, 5);
+  //displaySingleEnemies(5, 6);
+  const enemy = new SQLInjector({ x: 3, y: 10 }, path, 15, 6, 0);
+  enemy.setIsDemo();
+  enemy.show();
+  displaySingleEnemies(4, 7);
+  displaySingleEnemies(5, 8);
+
+  c.fillStyle = "LawnGreen";
+  c.fillText("GoodGuy", 64, 716);
+
+  c.fillStyle = "red";
+  c.fillText("Hacker", 0, 746);
+
+  c.fillText("Brute-force", 118, 746);
+
+  c.fillText("EF Injector", 172, 716);
+
+  c.fillText("PEXA", 266, 746);
+
+  c.fillText("Email Injector", 320, 716);
+};
+
+const displaySingleEnemies = (pos, type) => {
+  const enemy = new Enemy({ x: pos, y: 10 }, path, 15, type, 0);
+  enemy.setIsDemo();
+  enemy.show();
 };
 
 let ie = 0;
