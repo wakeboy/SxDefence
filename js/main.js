@@ -539,7 +539,7 @@ const deployEnemies = () => {
     const y2 = y1;
     tManager.addCallback(
       () => {
-        enemies.push(new Airplane({ x: x1, y: y1 }, [[y2, x2]], 15, 8, 0.04));
+        enemies.push(new Pexa({ x: x1, y: y1 }, [[y2, x2]], 15, 8, 0.04));
       },
       performance.now(),
       1000,
