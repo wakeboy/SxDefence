@@ -131,19 +131,29 @@ const damageWeight = {
     Airplane: {
         Bullet: 1,
         Missle: 2,
-        ReCaptchaBullet: 1,
+        TwoFactorBullet: 2,
+        ReCaptchaBullet: 5,
         EFBullet: 1
     },
     SQLInjector: {
         Bullet: 1,
         Missle: 2,
+        TwoFactorBullet: 2,
         ReCaptchaBullet: 1,
-        EFBullet: 100
+        EFBullet: 5
+    },
+    BruteForce: {
+        Bullet: 1,
+        Missle: 2,
+        TwoFactorBullet: 3,
+        ReCaptchaBullet: 3,
+        EFBullet: 1
     },
     Enemy: {
         Bullet: 1,
         Missle: 2,
-        ReCaptchaBullet: 100,
+        TwoFactorBullet: 2,
+        ReCaptchaBullet: 5,
         EFBullet: 1
     }
 }
