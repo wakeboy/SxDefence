@@ -23,6 +23,12 @@ class Enemy {
     this.value = 10;
 
     this.win = false;
+
+    this.demo = false;
+  }
+
+  setIsDemo() {
+    this.demo = true;
   }
 
   update() {
@@ -80,9 +86,9 @@ class Enemy {
       this.pos.x * tileSize + tileSize2,
       this.pos.y * tileSize + tileSize2
     );
-    this.showHealthBar();
+    if (!this.demo) this.showHealthBar();
     c.rotate(this.angle);
-    if (e.shadow)
+    if (e.shadow && !this.demo)
       c.drawImage(
         texture,
         e.shadow.x * tileSize + 1,

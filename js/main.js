@@ -88,7 +88,7 @@ const load = () => {
 
 const showMenu = () => {
   const btn = document.createElement("button");
-  btn.innerText = "Play";
+  btn.innerText = "Initialise SecurExchange Defense!";
   btn.style.width = "300px";
   btn.style.height = "50px";
   btn.style.position = "fixed";
@@ -96,6 +96,7 @@ const showMenu = () => {
   btn.style.left = "50%";
   btn.style.marginLeft = "-150px";
   btn.style.marginTop = "-25px";
+  btn.classList.add("fusion-button");
   btn.onclick = () => {
     btn.remove();
     init();
@@ -208,7 +209,7 @@ const init = function () {
 
   canvas.width = w * scale;
 
-  canvas.height = (h + tileSize) * scale;
+  canvas.height = (h + 2 * tileSize) * scale;
 
   canvas.style.width = w + "px";
 
@@ -231,6 +232,10 @@ const init = function () {
   fc = fcanvas.getContext("2d");
 
   fc.scale(scale, scale);
+
+  document.body.innerHTML = "";
+
+  document.body.appendChild(canvas);
 
   enemies = [];
 
@@ -271,7 +276,7 @@ const init = function () {
 };
 
 const draw = function () {
-  c.clearRect(0, 0, w, h + tileSize);
+  c.clearRect(0, 0, w, h + 2 * tileSize);
 
   for (let i = 0; i < map.length; i++) {
     for (let j = 0; j < map[0].length; j++) {
@@ -476,31 +481,84 @@ const showMoney = () => {
   const stringMoney = `${money}`;
   if (money <= 0) {
     tManager.removeCallback(deployEnemies);
-    console.log("Game Over!");
+    gameOver();
   } else {
     drawText(stringMoney, w - stringMoney.length * tileSize, 0);
   }
 };
 
+function onDrawFrame(ctx, frame) {
+  // update canvas size
+  canvas.width = frame.width;
+  canvas.height = frame.height;
+  // update canvas that we are using for Konva.Image
+  ctx.drawImage(frame.buffer, 0, 0);
+  // redraw the layer
+  layer.draw();
+}
+
+const gameOver = () => {
+  window.location.href = "/GameOver.html";
+};
+
 const displayTurrets = () => {
+  c.fillStyle = "gray";
+  c.fillRect(1024, 640, 64 * 5, 128);
   new Turret(id, { x: 16, y: 10 }, null).show();
   new EFTurret(id, { x: 17, y: 10 }, null).show();
   new ReCaptchaLauncher(id, { x: 18, y: 10 }, null).show();
   new DoubleMissileLauncher(id, { x: 19, y: 10 }, null).show();
   new Throttler(id, { x: 20, y: 10 }, null).show();
+
+  c.font = "18px Georgia";
+
+  c.fillStyle = "LawnGreen";
+  c.fillText("Password", 1024, 716);
+
+  c.fillText("EF", 1108, 746);
+
+  c.fillText("ReCaptcha", 1142, 716);
+
+  c.fillText("MFA", 1226, 746);
+
+  c.fillText("Throttler", 1270, 716);
 };
 
 const displayEnemies = () => {
   c.fillStyle = "gray";
-  c.fillRect(0, 640, 64 * 8, 64);
-  new Enemy({ x: 0, y: 10 }, path, 15, 1, 0).show();
-  new Enemy({ x: 1, y: 10 }, path, 15, 2, 0).show();
-  new Enemy({ x: 2, y: 10 }, path, 15, 3, 0).show();
-  new Enemy({ x: 3, y: 10 }, path, 15, 4, 0).show();
-  new Enemy({ x: 4, y: 10 }, path, 15, 5, 0).show();
-  new SQLInjector({ x: 5, y: 10 }, path, 15, 6, 0).show();
-  new Enemy({ x: 6, y: 10 }, path, 15, 7, 0).show();
-  new Enemy({ x: 7, y: 10 }, path, 15, 8, 0).show();
+  c.fillRect(0, 640, 64 * 6, 128);
+
+  displaySingleEnemies(0, 1);
+  displaySingleEnemies(1, 2);
+  const bruteForce = new BruteForce({ x: 2, y: 10 }, path, 15, 5, 0);
+  bruteForce.setIsDemo();
+  bruteForce.show();
+
+  const enemy = new SQLInjector({ x: 3, y: 10 }, path, 15, 6, 0);
+  enemy.setIsDemo();
+  enemy.show();
+  displaySingleEnemies(4, 7);
+  displaySingleEnemies(5, 8);
+
+  c.fillStyle = "LawnGreen";
+  c.fillText("GoodGuy", 64, 716);
+
+  c.fillStyle = "red";
+  c.fillText("Hacker", 0, 746);
+
+  c.fillText("Brute-force", 118, 746);
+
+  c.fillText("SQL Injector", 177, 716);
+
+  c.fillText("PEXA", 266, 746);
+
+  c.fillText("SMS Attack", 320, 716);
+};
+
+const displaySingleEnemies = (pos, type) => {
+  const enemy = new Enemy({ x: pos, y: 10 }, path, 15, type, 0);
+  enemy.setIsDemo();
+  enemy.show();
 };
 
 let ie = 0;
@@ -544,7 +602,7 @@ const deployEnemies = () => {
     const y2 = y1;
     tManager.addCallback(
       () => {
-        enemies.push(new Pexa({ x: x1, y: y1 }, [[y2, x2]], 15, 8, 0.04));
+        enemies.push(new Pexa({ x: x1, y: y1 }, [[y2, x2]], 15, 7, 0.04));
       },
       performance.now(),
       1000,
@@ -559,6 +617,14 @@ const deployEnemies = () => {
       performance.now(),
       1000,
       2
+    );
+    tManager.addCallback(
+      () => {
+        enemies.push(new Airplane({ x: x1, y: y1 }, [[y2, x2]], 15, 8, 0.05));
+      },
+      performance.now(),
+      1000,
+      3
     );
   }
 
@@ -585,20 +651,7 @@ const deployEnemies = () => {
     );
   }
 
-  if (ie == 3) {
-    tManager.addCallback(
-      () => {
-        enemies.push(
-          new BruteForce({ x: ini[1], y: ini[0] }, path, 15, 5, 0.02)
-        );
-      },
-      performance.now(),
-      1000,
-      10
-    );
-  }
-
-  ie = (ie + 1) % 4;
+  ie = (ie + 1) % 3;
 };
 
 const getPosition = (e) => {
