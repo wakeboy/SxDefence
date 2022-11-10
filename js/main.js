@@ -233,10 +233,6 @@ const init = function () {
 
   fc.scale(scale, scale);
 
-  document.body.innerHTML = "";
-
-  document.body.appendChild(canvas);
-
   enemies = [];
 
   legitUsers = [];
@@ -486,16 +482,6 @@ const showMoney = () => {
     drawText(stringMoney, w - stringMoney.length * tileSize, 0);
   }
 };
-
-function onDrawFrame(ctx, frame) {
-  // update canvas size
-  canvas.width = frame.width;
-  canvas.height = frame.height;
-  // update canvas that we are using for Konva.Image
-  ctx.drawImage(frame.buffer, 0, 0);
-  // redraw the layer
-  layer.draw();
-}
 
 const gameOver = () => {
   window.location.href = "/GameOver.html";
