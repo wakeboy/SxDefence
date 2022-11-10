@@ -580,20 +580,13 @@ const deployEnemies = () => {
       2
     );
   }
+  
+  const x1 = 0;
+  const y1 = map.length >> 1;
+  const x2 = map[0].length - 1;
+  const y2 = y1;
 
   if (ie == 1) {
-    const x1 = 0;
-    const y1 = map.length >> 1;
-    const x2 = map[0].length - 1;
-    const y2 = y1;
-    tManager.addCallback(
-      () => {
-        enemies.push(new Pexa({ x: x1, y: y1 }, [[y2, x2]], 15, 7, 0.04));
-      },
-      performance.now(),
-      1000,
-      3
-    );
     tManager.addCallback(
       () => {
         legitUsers.push(
@@ -637,7 +630,31 @@ const deployEnemies = () => {
     );
   }
 
-  ie = (ie + 1) % 3;
+  if (ie == 3) {
+    tManager.addCallback(
+      () => {
+        enemies.push(
+          new BruteForce({ x: ini[1], y: ini[0] }, path, 15, 5, 0.02)
+        );
+      },
+      performance.now(),
+      1000,
+      10
+    );
+  }
+
+  if (ie == 4) {
+    tManager.addCallback(
+      () => {
+        enemies.push(new Pexa({ x: x1, y: y1 }, [[y2, x2]], 15, 7, 0.04));
+      },
+      performance.now(),
+      1000,
+      3
+    );
+  }
+
+  ie = (ie + 1) % 5;
 };
 
 const getPosition = (e) => {
