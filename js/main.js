@@ -88,7 +88,7 @@ const load = () => {
 
 const showMenu = () => {
   const btn = document.createElement("button");
-  btn.innerText = "Protect me using SecurExchange!";
+  btn.innerText = "Initialise SecurExchange Defense!";
   btn.style.width = "300px";
   btn.style.height = "50px";
   btn.style.position = "fixed";
