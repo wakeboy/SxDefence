@@ -1,4 +1,4 @@
-# Tower Defense [W.I.P]
+# SX Defense [W.I.P]
 
 A (unfinished) tower defense game written in vanilla JavaScript.
 
