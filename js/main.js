@@ -529,7 +529,7 @@ const displayEnemies = () => {
 
   c.fillText("Brute-force", 118, 746);
 
-  c.fillText("EF Injector", 177, 716);
+  c.fillText("SQL Injector", 177, 716);
 
   c.fillText("PEXA", 266, 746);
 
